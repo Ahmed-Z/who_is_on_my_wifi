@@ -29,7 +29,10 @@ def connection_change(hosts, action):
         raise ValueError(f"Invalid action: {action}")
     for host in hosts:
         device = dictionary[host] if host in dictionary else 'unknown device'
-        say = f"echo {device} connected | cscript C:\\Progra~1\\Jampal\\ptts.vbs"
+        if action == 'connected':
+            say = f"echo {device} connected | cscript C:\\Progra~1\\Jampal\\ptts.vbs"
+        else:
+            say = f"echo {device} disconnected | cscript C:\\Progra~1\\Jampal\\ptts.vbs"
         subprocess.call(say, shell=True, stdout=None, stderr=None)
 
 
