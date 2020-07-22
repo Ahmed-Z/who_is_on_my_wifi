@@ -2,6 +2,7 @@ import scapy.all as scapy
 import time,subprocess
 
 NETWORK = "192.168.1.0/24"
+INTERVAL = 30
 current_macs =[]
 dictionnary = {
 '11:22:22:33:44:55' : 'John Mobile',
@@ -41,7 +42,7 @@ def main():
     current_macs = scan(NETWORK)
     connected(current_macs)
     while True:
-        time.sleep(10)
+        time.sleep(INTERVAL)
         macs = scan(NETWORK)
         new = list(set(macs) - set(current_macs))
         left = list(set(current_macs) - set(macs))
